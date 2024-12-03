@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath}
+
+\title{\bfseries%
+A contrastive causal multilinear model for calibration}
+\author{Hogg, Saydjari, others}
+\date{November 2024}
+
+% typesetting
+\setlength{\topmargin}{0.00in}
+\setlength{\oddsidemargin}{0.00in}
+\setlength{\textheight}{7.50in}
+\setlength{\textwidth}{5.00in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.5in}
+\linespread{1.08}
+\sloppy\sloppypar\raggedbottom\frenchspacing
+\pagestyle{myheadings}
+\markboth{foo}{\slshape Hogg, Saydjari, et al / Contrastive causal multilinear calibration}
+\newcommand{\documentname}{\textsl{Article}}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{Abstract:}
+Massive spectroscopic surveys generally work in a multi-object mode, in which many stars are simultaneously observed
+through different apertures or different fibers; sometimes they are even simultaneously observed in separate instruments.
+The question arises:
+How to make sure that all of these spectra, taken through marginally (or very) different hardware,
+are directly comparable such that they can be analyzed or interpreted with common software?
+Here we present a framework, methodology, and software system to calibrate multi-instrument and multi-fiber spectroscopic
+data onto a common basis with uniform resolution and throughput or normalization.
+
+\section{Introduction}
+
+\section{Assumptions}
+
+\begin{description}
+    \item[Hardware:] For the purposes of this \documentname, we will assume that there are a set of $M$ instrument--fiber combinations $i$ ($1\leq i\leq M$).
+    Nothing written here depends on the instruments being actually fiber-fed, but this is pretty common at the present day.
+    \item[Data:]
+    \item[Dimensionality of stellar spectra:] Stars cannot have arbitrary spectra.
+    Instead the (expectations of) stellar spectra lie on (or near) a low-dimensional manifold of spectrum space (which is very large).
+    \item[Linearity of the instrumentation:] The difference between the (expectation of the) spectrum taken of a particular star $j$ in instrument--fiber combination $i$ and the (expectation of the) spectrum (hypothetically) taken of that same star $j$ but through a different instrument--fiber $i'\ne i$ can be expressed with a linear operator $T_{i'i}$, such that if the observed data $y_{ji}$ on star $j$ through instrument--fiber $i$ is given by the noisification of an expectation $f_{ji}$
+    \begin{align}
+        y_{ji} &= f_{ji} + \mbox{noise} ~,
+    \end{align}
+    then the expectation $f_{ji'}$ for the same star through the instrument--fiber $i'$ is given by
+    \begin{align}
+        f_{ji'} &= T_{i'i}\,f_{ji} ~.
+    \end{align}
+    This assumption is almost the same as an assumption that the fibers differ in terms of resolution and throughput, but don't introduce nonlinearities.
+    \item[Calibration and normalization:] 
+    \item[Noise model:] Much of the above is written in terms of expectation values.
+    The observed spectrum of a star differs from the expectation (given the star and the fiber properties) by some simple, Gaussian, zero-mean noise.
+    This noise has a variance in each pixel that is well approximated by some noise model that has been provided to us along with the data.
+\end{description}
+
+\section{Data}
+
+\section{Method and results}
+The model we will build is \emph{causal} in the sense that we will explicitly require that the effects of the instrument--fiber combinations separate from the effects of the stellar parameters, geometrically, in the latent space.
+The model is \emph{contrastive} in the sense that we will try to get stars that are intrinsically similar to be close in a certain projection of the latent space, and stars that are intrinsically different to be far.
+Similarly, we will try to get spectra taken with the same instrument--fiber combination to be close in a different projection of the latent space, and stars through different instrument--fibers to be far.
+The model is \emph{multilinear} in the sense that the decoding from the latent space to the spectral space goes via some linear operators that are multiplied together to model the spectra.
+The model is a \emph{calibration} model in the sense that it can be used to transform the spectra into the form that they would have had if they had been all observed through the same (fiducial) instrument--calibration choice.
+
+\section{Discussion}
+
+\paragraph{Acknowledgements:}
+We thank
+ Soledad Villar (JHU)
+and the Geometry and Data Analysis group at Flatiron for valuable comments and input.
+
+\end{document}
